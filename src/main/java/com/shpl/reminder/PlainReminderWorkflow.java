@@ -1,27 +1,26 @@
 package com.shpl.reminder;
 
 import com.uber.cadence.workflow.Workflow;
-import org.slf4j.Logger;
 
 import java.time.Duration;
 
-public class PlainReminder implements Reminder {
+public class PlainReminderWorkflow implements ReminderWorkflow {
 
-    private final static Logger LOGGER = Workflow.getLogger(PlainReminder.class);
-
+    private final LogActivities activities;
     private int nReminds;
 
-    public PlainReminder() {
+    public PlainReminderWorkflow() {
+        this.activities = Workflow.newActivityStub(LogActivities.class);
         this.nReminds = 0;
     }
 
     @Override
     public void remind() {
-        LOGGER.info("Starting reminds {}", nReminds);
+        activities.init();
         while (nReminds < 20) {
             Workflow.sleep(Duration.ofSeconds(2));
             nReminds++;
-            LOGGER.info("Reminder {}", nReminds);
+            activities.run(nReminds);
         }
     }
 }
