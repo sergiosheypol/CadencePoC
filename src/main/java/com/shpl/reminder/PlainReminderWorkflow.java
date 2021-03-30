@@ -1,10 +1,13 @@
 package com.shpl.reminder;
 
 import com.uber.cadence.workflow.Workflow;
+import org.slf4j.Logger;
 
 import java.time.Duration;
 
 public class PlainReminderWorkflow implements ReminderWorkflow {
+
+    private final static Logger LOGGER = Workflow.getLogger(PlainReminderWorkflow.class);
 
     private final LogActivities activities;
     private int nReminds;
@@ -16,11 +19,10 @@ public class PlainReminderWorkflow implements ReminderWorkflow {
 
     @Override
     public void remind() {
-        activities.init();
         while (nReminds < 20) {
-            Workflow.sleep(Duration.ofSeconds(2));
+            Workflow.sleep(Duration.ofMillis(500));
             nReminds++;
-            activities.run(nReminds);
+            LOGGER.info(activities.run(nReminds));
         }
     }
 }

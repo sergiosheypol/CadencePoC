@@ -2,7 +2,7 @@ package com.shpl.reminder;
 
 import com.uber.cadence.client.WorkflowClient;
 
-public class Executor {
+public class Client {
     public static void main(String[] args) {
         WorkflowClient workflowClient = WorkflowClient.newInstance(Constant.DOMAIN);
         // Get a workflow stub using the same task list the worker uses.
