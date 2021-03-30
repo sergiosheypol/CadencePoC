@@ -4,6 +4,6 @@ import com.uber.cadence.workflow.WorkflowMethod;
 
 public interface Reminder {
 
-    @WorkflowMethod
+    @WorkflowMethod(taskList = "ReminderTaskList")
     void remind();
 }
