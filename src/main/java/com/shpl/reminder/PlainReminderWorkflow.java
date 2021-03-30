@@ -21,7 +21,7 @@ public class PlainReminderWorkflow implements ReminderWorkflow {
     public void remind() {
         LOGGER.info(activities.init());
         while (nReminds < 20) {
-            Workflow.sleep(Duration.ofMillis(50));
+            Workflow.sleep(Duration.ofSeconds(5));
             nReminds++;
             LOGGER.info(activities.run(nReminds));
         }
