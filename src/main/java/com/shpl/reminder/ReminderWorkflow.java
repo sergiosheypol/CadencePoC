@@ -1,5 +1,6 @@
 package com.shpl.reminder;
 
+import com.uber.cadence.workflow.QueryMethod;
 import com.uber.cadence.workflow.SignalMethod;
 import com.uber.cadence.workflow.WorkflowMethod;
 
@@ -9,4 +10,7 @@ public interface ReminderWorkflow {
 
     @SignalMethod
     void kill();
+
+    @QueryMethod
+    String getCounter();
 }

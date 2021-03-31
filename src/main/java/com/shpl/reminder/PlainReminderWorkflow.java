@@ -35,4 +35,9 @@ public class PlainReminderWorkflow implements ReminderWorkflow {
         LOGGER.info("Stopping...");
         execute = false;
     }
+
+    @Override
+    public String getCounter() {
+       return String.format("Reminder {%s}", nReminds);
+    }
 }
